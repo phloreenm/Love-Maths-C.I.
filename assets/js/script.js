@@ -82,12 +82,10 @@ function calculateCorrectAnswer() {
     } else if (operator === "/") {
         // if (operand1 % operand2 !== 0) {
         //     console.log("Math.floor(operand1 / operand2): " + operand1 + " " + operand2);
-        var result = [Math.floor(operand1 / operand2), "division"];
-        console.log("result: " + result);
-        return result;
+        // return [Math.floor(operand1 / operand2), "division"];
         // } else {
         //     console.log("operand1 / operand2): " + operand1 + " " + operand2);
-        //     return [operand1 / operand2, "division"];
+        return [operand1 / operand2, "division"];
     }
 }
 
@@ -151,7 +149,8 @@ function displayMultiplyQuestion(operand1, operand2) {
 
 // Add your division question here
 function displayDivisionQuestion(operand1, operand2) {
-
+    // to avoid having division with floating-point results, the CI platforms has this solution, instead of the one checking for modulo:
+    operand1 = operand1 * operand2;
     document.getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
     document.getElementById("operand2").textContent = operand1 > operand2 ? operand2 : operand1;
     document.getElementById("operator").textContent = "/";
